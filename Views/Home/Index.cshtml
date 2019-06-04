@@ -1,0 +1,91 @@
+﻿@using Dojodachi.Models
+@model Puppy
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/style.css"/>
+    <script src="main.js"></script>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="box">
+            <center>
+
+                @if (ViewBag.Pikachu.Fullness >= 100 && ViewBag.Pikachu.Happiness >= 100 && ViewBag.Pikachu.Energy >= 100)
+                {
+                    <h1>You did it! Pikachu succeeded!</h1>
+                    <button><a href="clear">Reset</a></button>
+                }
+
+                else if (ViewBag.Pikachu.Fullness < 1 || ViewBag.Pikachu.Happiness < 1)
+                {
+                <button><a href="clear">Reset</a></button>
+                }
+
+                else
+
+                {
+                <h1>Fullness: @ViewBag.Pikachu.Fullness</h1>
+                <h1>Happiness: @ViewBag.Pikachu.Happiness</h1>
+                <h1>Meals: @ViewBag.Pikachu.Meals</h1>
+                <h1>Energy: @ViewBag.Pikachu.Energy</h1>
+                <br>
+                }
+            </center>
+            <div class="log">
+                @if (ViewBag.Pikachu.Fullness < 1 || ViewBag.Pikachu.Happiness < 1) {
+                    <img src="~/images/dead.png">
+                <br>
+                <br>
+                <h2>Oh no! The fullness or happiness dropped to 0. Game over!
+                </h2>}
+
+                else {
+                    <img src="~/images/pika.png">
+                <br>
+                <br>
+                    <h2>@ViewBag.Pikachu.Log
+                </h2>
+                }
+            </div>
+        </div>
+        <br>
+        <center>
+        @if (ViewBag.Pikachu.Fullness > 1 || ViewBag.Pikachu.Happiness > 1) {
+        <button><a href="/feed">Feed</a></button>
+        <button><a href="/play">Play</a></button>
+        <button><a href="/work">Work</a></button>
+        <button><a href="/sleep">Sleep</a></button>
+        }
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <h5>Your Dojodachi should start with 20 happiness, 20 fullness, 50 energy, and 3 meals.<br><br>
+After every button press, display a message showing how the Dojodachi reacted<br><br>
+Feeding your Dojodachi costs 1 meal and gains a random amount of fullness between 5 and 10 (you cannot feed your Dojodachi if you do not have meals)<br><br>
+Playing with your Dojodachi costs 5 energy and gains a random amount of happiness between 5 and 10<br><br>
+Every time you play with or feed your dojodachi there should be a 25% chance that it won't like it. Energy or meals will still decrease, but happiness and fullness won't change.<br><br>
+Working costs 5 energy and earns between 1 and 3 meals<br><br>
+Sleeping earns 15 energy and decreases fullness and happiness each by 5<br><br>
+If energy, fullness, and happiness are all raised to over 100, you win! a restart button should be displayed.<br><br>
+If fullness or happiness ever drop to 0, you lose, and a restart button should be displayed.<br><br></h5>
+        </center>
+
+    </div>
+</body>
+
+</html>
